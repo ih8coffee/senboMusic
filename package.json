@@ -1,0 +1,52 @@
+{
+  "name": "senbomusic",
+  "version": "1.0.0",
+  "description": "Simple music bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "p": "prettier . --write",
+    "postinstall": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/distubejs/example.git"
+  },
+  "author": "eralp#9999",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "github:discordjs/opus",
+    "@discordjs/voice": "^0.11.0",
+    "@distube/soundcloud": "^1.2.1",
+    "@distube/spotify": "^1.3.2",
+    "@distube/yt-dlp": "^1.1.3",
+    "ascii-table": "^0.0.9",
+    "chalk": "^4.1.2",
+    "discord.js": "^14.7.1",
+    "distube": "^4.0.3",
+    "eslint-config-prettier": "^8.5.0",
+    "libsodium-wrappers": "^0.7.10",
+    "ytdl-core": "^4.11.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.1",
+    "nano-staged": "^0.8.0",
+    "prettier": "^2.7.1"
+  },
+  "nano-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,yml,yaml,md}": [
+      "prettier --write"
+    ]
+  }
+}
