@@ -72,7 +72,7 @@ client.on('messageCreate', async message => {
   if (message.guildId==="162334486460235777"){
     if (message.channelId!=="778426788011180140"){
       message.delete();
-      return message.channel.send(`${message.user} Please use <#778426788011180140>`).then(msg => {
+      return message.channel.send(`${message.author} Please use <#778426788011180140>`).then(msg => {
       setTimeout(() => msg.delete(), 10000)
     })
   }
