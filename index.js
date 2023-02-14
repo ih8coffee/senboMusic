@@ -70,9 +70,12 @@ client.on('messageCreate', async message => {
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command))
   if (!cmd) return
   if (message.guildId==="162334486460235777"){
-    if (message.channelId!=="778426788011180140") return message.reply("Please use <#778426788011180140>").then(msg => {
+    if (message.channelId!=="778426788011180140"){
+      message.delete();
+      return message.channel.send(`${message.user} Please use <#778426788011180140>`).then(msg => {
       setTimeout(() => msg.delete(), 10000)
     })
+  }
   }
   if (cmd.inVoiceChannel && !message.member.voice.channel) {
     return message.channel.send(`${client.emotes.error} | You must be in a voice channel!`)
