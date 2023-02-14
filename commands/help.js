@@ -6,11 +6,12 @@ module.exports = {
   name: 'help',
   aliases: ['h', 'cmd', 'command'],
   async run(client, message){
+    const color = config.color;
     const prefix = config.prefix;
     const embed1 = new Discord.EmbedBuilder()
     .setTitle('Commands')
     .setDescription(`Click the page buttons to browse the commands!\nThe current prefix is \`${prefix}\` !`)
-    .setColor('0xFFB6C1')
+    .setColor(color)
     .addFields({name: `${prefix}join`, value: "- Senbo joins the voice channel you are currently in!"})
     .addFields({name: `${prefix}play`, value: `- Senbo plays the requested song!`})
     .addFields({name: `${prefix}queue`, value: "- Displays the queue of songs!"})
@@ -22,7 +23,7 @@ module.exports = {
     const embed2 = new Discord.EmbedBuilder()
     .setTitle('Commands')
     .setDescription(`Click the page buttons to browse the commands!\nThe current prefix is \`${prefix}\` !`)
-    .setColor('0xFFB6C1')
+    .setColor(color)
     .addFields({name: `${prefix}autoplay`, value: "- Senbo will try and find songs that relate to your last played song!"})
     .addFields({name: `${prefix}filters`, value: "- Senbo adds audio filters overlaying the song!"})
     .addFields({name: `${prefix}volume`, value: "- Senbo adjusts the volume!"})
@@ -34,7 +35,7 @@ module.exports = {
     const embed3 = new Discord.EmbedBuilder()
     .setTitle('Commands')
     .setDescription(`Click the page buttons to browse the commands!\nThe current prefix is \`${prefix}\` !`)
-    .setColor('0xFFB6C1')
+    .setColor(color)
     .addFields({name: `${prefix}playtop`, value: "- Senbo will queue a song to the first position of the queue!"})
     .addFields({name: `${prefix}playskip`, value: "- Senbo will queue a song and skip the current one!"})
     .addFields({name: `${prefix}skipto`, value: "- Senbo will skip to a specific part of the queue"})
