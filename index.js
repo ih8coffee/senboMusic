@@ -1,4 +1,4 @@
-const { DisTube, DistubeOptions } = require('distube')
+const { DisTube } = require('distube')
 const Discord = require('discord.js')
 
 const client = new Discord.Client({
@@ -15,14 +15,15 @@ const { SpotifyPlugin } = require('@distube/spotify')
 const { SoundCloudPlugin } = require('@distube/soundcloud')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
 
-const chalk = require("chalk");
-const ascii = require("ascii-table");
-const { ActivityType } = require('discord.js')
-const table = new ascii().setHeading("Command","Status");
+const chalk = require('chalk')
+const ascii = require('ascii-table')
+
+// eslint-disable-next-line new-cap
+const table = new ascii().setHeading('Command', 'Status')
 
 client.config = require('./config.json')
 client.distube = new DisTube(client, {
-  //searchSongs : 5,
+  // searchSongs : 5,
   leaveOnStop: false,
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
@@ -46,18 +47,18 @@ fs.readdir('./commands/', (err, files) => {
   if (jsFiles.length <= 0) return console.log('Could not find any commands!')
   jsFiles.forEach(file => {
     const cmd = require(`./commands/${file}`)
-    table.addRow(cmd.name, "✅");
+    table.addRow(cmd.name, '✅')
     client.commands.set(cmd.name, cmd)
     if (cmd.aliases) cmd.aliases.forEach(alias => client.aliases.set(alias, cmd.name))
   })
-  console.log(table.toString());
+  console.log(table.toString())
 })
 
 client.on('ready', () => {
   console.log(`${chalk.greenBright(client.user.username)} is ready to play music.`)
 
-  client.user.setActivity(`${client.prefix}help`,{
-    type: 0,
+  client.user.setActivity(`${client.prefix}help`, {
+    type: 0
   })
 })
 
@@ -69,13 +70,13 @@ client.on('messageCreate', async message => {
   const command = args.shift().toLowerCase()
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command))
   if (!cmd) return
-  if (message.guildId==="162334486460235777"){
-    if (message.channelId!=="778426788011180140"){
-      message.delete();
+  if (message.guildId === '162334486460235777') {
+    if (message.channelId !== '778426788011180140') {
+      message.delete()
       return message.channel.send(`${message.author} Please use <#778426788011180140>`).then(msg => {
-      setTimeout(() => msg.delete(), 10000)
-    })
-  }
+        setTimeout(() => msg.delete(), 10000)
+      })
+    }
   }
   if (cmd.inVoiceChannel && !message.member.voice.channel) {
     return message.channel.send(`${client.emotes.error} | You must be in a voice channel!`)
@@ -92,7 +93,7 @@ const status = queue =>
   `Volume: \`${queue.volume}%\` | Filter: \`${queue.filters.names.join(', ') || 'Off'}\` | Loop: \`${
     queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Off'
   }\` | Autoplay: \`${queue.autoplay ? 'On' : 'Off'}\``
-  
+
 client.distube
   .on('playSong', (queue, song) =>
     queue.textChannel.send(
@@ -122,20 +123,20 @@ client.distube
     message.channel.send(`${client.emotes.error} | No result found for \`${query}\`!`)
   )
   .on('finish', queue => queue.textChannel.send('Finished!'))
-  .on("searchResult", (message, result) => {
-     let i = 0
-     message.channel.send(
+  .on('searchResult', (message, result) => {
+    let i = 0
+    message.channel.send(
          `**Choose an option from below**\n${result
              .map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``)
-             .join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`
-     )
- })
- .on("searchCancel", message => message.channel.send(`${client.emotes.error} | Searching canceled`))
- .on("searchInvalidAnswer", message =>
-     message.channel.send(
+             .join('"\n"')}\n*Enter anything else or wait 60 seconds to cancel*`
+    )
+  })
+  .on('searchCancel', message => message.channel.send(`${client.emotes.error} | Searching canceled`))
+  .on('searchInvalidAnswer', message =>
+    message.channel.send(
          `${client.emotes.error} | Invalid answer! You have to enter the number in the range of the results`
-     )
- )
- .on("searchDone", () => {})
+    )
+  )
+  .on('searchDone', () => {})
 
 client.login(config.token)
