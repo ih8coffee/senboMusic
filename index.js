@@ -16,10 +16,9 @@ const { SoundCloudPlugin } = require('@distube/soundcloud')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
 
 const chalk = require('chalk')
-const ascii = require('ascii-table')
+const Ascii = require('ascii-table')
 
-// eslint-disable-next-line new-cap
-const table = new ascii().setHeading('Command', 'Status')
+const table = new Ascii().setHeading('Command', 'Status')
 
 client.config = require('./config.json')
 client.distube = new DisTube(client, {
@@ -140,3 +139,5 @@ client.distube
   .on('searchDone', () => {})
 
 client.login(config.token)
+
+// cece <3
