@@ -1,0 +1,78 @@
+token = TOKEN_HERE
+
+owner = OWNER_HERE
+
+prefix = "!"
+
+game = "sliming"
+
+status = ONLINE
+
+songinstatus=false
+
+altprefix = "NONE"
+
+success = "🎶"
+warning = "💡"
+error = "🚫"
+loading = "⌚"
+searching = "🔎"
+
+help = help
+
+npimages = false
+
+stayinchannel = true
+
+maxtime = 0
+
+maxytplaylistpages = 10
+
+skipratio = 0.55
+
+alonetimeuntilstop = 0
+
+playlistsfolder = "Playlists"
+
+updatealerts=true
+
+lyrics.default = "A-Z Lyrics"
+
+aliases {
+  settings = [ status ]
+
+  lyrics = []
+  nowplaying = [ np, current ]
+  play = []
+  playlists = [ pls ]
+  queue = [ list ]
+  remove = [ delete ]
+  scsearch = []
+  search = [ ytsearch ]
+  shuffle = []
+  skip = [ voteskip ]
+
+  prefix = [ setprefix ]
+  setdj = []
+  setskip = [ setskippercent, skippercent, setskipratio ]
+  settc = []
+  setvc = []
+
+  forceremove = [ forcedelete, modremove, moddelete, modelete ]
+  forceskip = [ modskip ]
+  movetrack = [ move ]
+  pause = []
+  playnext = []
+  queuetype = []
+  repeat = []
+  skipto = [ jumpto ]
+  stop = [ leave ]
+  volume = [ vol ]
+}
+
+loglevel = info
+
+transforms = {}
+
+eval=false
+evalengine="Nashorn"
